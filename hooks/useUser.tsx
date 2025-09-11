@@ -31,6 +31,7 @@ export const [UserProvider, useUser] = createContextHook<UserContextType>(() => 
           email: 'john@example.com',
           level: 5,
           points: 1250,
+          totalPoints: 5420,
           streak: 7,
         };
         setUser(defaultUser);
