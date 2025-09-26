@@ -5,7 +5,6 @@ export interface User {
   avatar?: string;
   level: number;
   points: number;
-  totalPoints: number;
   streak: number;
 }
 
@@ -29,44 +28,18 @@ export interface Video {
   isSaved?: boolean;
 }
 
-export interface Module {
-  id: string;
-  title: string;
-  thumbnailUrl: string;
-  videos: Video[];
-  quizzes: Quiz[];
-  progress: number;
-  isLocked: boolean;
-  order: number;
-}
-
-export interface Quiz {
-  id: string;
-  title: string;
-  questions: number;
-  completed: boolean;
-  score?: number;
-}
-
 export interface Course {
   id: string;
   title: string;
   description: string;
   thumbnailUrl: string;
-  modules: Module[];
+  videos: Video[];
   progress: number;
   totalVideos: number;
   completedVideos: number;
   category: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   estimatedTime: number;
-  pointsEarned: number;
-  totalPoints: number;
-  isLiked: boolean;
-  lastAccessedAt?: Date;
-  completedAt?: Date;
-  enrolledAt?: Date;
-  certificateUrl?: string;
 }
 
 export interface Category {
