@@ -48,6 +48,8 @@ export interface Quiz {
   questions: QuizQuestion[];
   completed: boolean;
   score?: number;
+  courseId?: string;
+  courseName?: string;
 }
 
 export interface QuizQuestion {
@@ -55,6 +57,34 @@ export interface QuizQuestion {
   question: string;
   options: string[];
   correctAnswer: number;
+  userAnswer?: number;
+}
+
+export interface Comment {
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  text: string;
+  likes: number;
+  isLiked: boolean;
+  createdAt: Date;
+}
+
+export interface Source {
+  id: string;
+  title: string;
+  url: string;
+  domain: string;
+  isVerified: boolean;
+}
+
+export interface VideoProgress {
+  videoId: string;
+  watchedSeconds: number;
+  totalSeconds: number;
+  completed: boolean;
+  lastWatchedAt: Date;
 }
 
 export interface CourseProgress {

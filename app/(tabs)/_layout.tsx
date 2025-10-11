@@ -43,6 +43,7 @@ export default function TabLayout() {
         options={{
           title: "Player",
           tabBarIcon: ({ color, size }) => <Play color={color} size={size} />,
+          headerShown: false,
         }}
       />
       <Tabs.Screen
