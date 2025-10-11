@@ -5,9 +5,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  SafeAreaView,
   Image,
 } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from "expo-router";
 import { Settings, Trophy, Flame, Target, Bell, Coins, MessageSquare, AlertCircle, CreditCard } from "lucide-react-native";
 import Colors from "@/constants/colors";
@@ -22,6 +22,7 @@ import { Course, Module } from "@/types";
 export default function DashboardScreen() {
   const router = useRouter();
   const { user } = useUser();
+  const insets = useSafeAreaInsets();
   const [hasNotifications] = useState(true);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [showCatalog, setShowCatalog] = useState(false);
@@ -178,10 +179,10 @@ export default function DashboardScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Custom Header with Dashboard Title */}
-        <View style={styles.customHeader}>
+        <View style={[styles.customHeader, { paddingTop: insets.top + Layout.spacing.md }]}>
           <View style={styles.titleRow}>
             <Text style={styles.dashboardTitle}>Dashboard</Text>
             <View style={styles.pointsContainer}>
@@ -414,7 +415,7 @@ export default function DashboardScreen() {
           onModulePress={handleModulePress}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
