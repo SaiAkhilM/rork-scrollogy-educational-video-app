@@ -15,9 +15,11 @@ import Layout from "@/constants/layout";
 import { useRouter } from "expo-router";
 import VideoCard from "@/components/explore/VideoCard";
 import { LeaderboardEntry } from "@/types";
+import { useUser } from "@/hooks/useUser";
 
 export default function ExploreScreen() {
   const router = useRouter();
+  const { user } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -133,6 +135,15 @@ export default function ExploreScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Header with Points */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Explore</Text>
+          <View style={styles.pointsDisplay}>
+            <Text style={styles.pointsValue}>{user?.points.toLocaleString() || 0}</Text>
+            <Text style={styles.pointsLabel}>pts</Text>
+          </View>
+        </View>
+
         {/* Search Bar */}
         <View style={styles.searchContainer}>
           <View style={styles.searchBar}>
@@ -248,6 +259,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: Layout.spacing.lg,
+    paddingTop: Layout.spacing.md,
+    paddingBottom: Layout.spacing.sm,
+  },
+  headerTitle: {
+    fontSize: Layout.fontSize.xxl,
+    fontWeight: 'bold',
+    color: Colors.text.primary,
+  },
+  pointsDisplay: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    backgroundColor: Colors.accentYellow,
+    paddingHorizontal: Layout.spacing.md,
+    paddingVertical: Layout.spacing.xs,
+    borderRadius: Layout.borderRadius.large,
+    gap: 4,
+  },
+  pointsValue: {
+    fontSize: Layout.fontSize.lg,
+    fontWeight: 'bold',
+    color: Colors.text.primary,
+  },
+  pointsLabel: {
+    fontSize: Layout.fontSize.sm,
+    fontWeight: '600',
+    color: Colors.text.secondary,
   },
   searchContainer: {
     flexDirection: 'row',
