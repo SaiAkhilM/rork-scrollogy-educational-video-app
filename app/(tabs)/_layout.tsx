@@ -51,6 +51,7 @@ export default function TabLayout() {
         options={{
           title: "Dashboard",
           tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
+          headerShown: false,
         }}
       />
     </Tabs>

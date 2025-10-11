@@ -180,28 +180,19 @@ export default function DashboardScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Enhanced Header */}
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <TouchableOpacity>
-              <Image
-                source={{ uri: user?.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user?.name || 'User') + '&background=7B68EE&color=fff' }}
-                style={styles.avatar}
-              />
-            </TouchableOpacity>
-            <View>
-              <Text style={styles.greeting}>Welcome back,</Text>
-              <Text style={styles.userName}>{user?.name || 'Learner'}! 🔥</Text>
-            </View>
-          </View>
-          <View style={styles.headerRight}>
+        {/* Custom Header with Dashboard Title */}
+        <View style={styles.customHeader}>
+          <View style={styles.titleRow}>
+            <Text style={styles.dashboardTitle}>Dashboard</Text>
             <View style={styles.pointsContainer}>
-              <Coins color={Colors.accentYellow} size={20} />
+              <Coins color={Colors.accentYellow} size={18} />
               <View>
                 <Text style={styles.pointsValue}>{user?.points || 0}</Text>
                 <Text style={styles.pointsLabel}>{user?.totalPoints || 0} total</Text>
               </View>
             </View>
+          </View>
+          <View style={styles.headerActions}>
             <TouchableOpacity style={styles.notificationButton}>
               <Bell color={Colors.text.primary} size={24} />
               {hasNotifications && <View style={styles.notificationDot} />}
@@ -212,6 +203,22 @@ export default function DashboardScreen() {
             >
               <Settings color={Colors.text.primary} size={24} />
             </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* User Welcome Section */}
+        <View style={styles.welcomeSection}>
+          <View style={styles.welcomeLeft}>
+            <TouchableOpacity>
+              <Image
+                source={{ uri: user?.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user?.name || 'User') + '&background=7B68EE&color=fff' }}
+                style={styles.avatar}
+              />
+            </TouchableOpacity>
+            <View>
+              <Text style={styles.greeting}>Welcome back,</Text>
+              <Text style={styles.userName}>{user?.name || 'Learner'}! 🔥</Text>
+            </View>
           </View>
         </View>
 
@@ -416,24 +423,45 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
-  header: {
+  customHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: Layout.spacing.lg,
     paddingTop: Layout.spacing.lg,
-    paddingBottom: Layout.spacing.md,
+    paddingBottom: Layout.spacing.sm,
+    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.gray.light,
   },
-  headerLeft: {
+  titleRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: Layout.spacing.md,
     flex: 1,
   },
-  headerRight: {
+  dashboardTitle: {
+    fontSize: Layout.fontSize.xxl,
+    fontWeight: 'bold',
+    color: Colors.text.primary,
+  },
+  headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Layout.spacing.sm,
+  },
+  welcomeSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: Layout.spacing.lg,
+    paddingTop: Layout.spacing.md,
+    paddingBottom: Layout.spacing.sm,
+  },
+  welcomeLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Layout.spacing.md,
   },
   avatar: {
     width: 40,
@@ -445,11 +473,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Layout.spacing.xs,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.gray.light,
     paddingHorizontal: Layout.spacing.sm,
-    paddingVertical: Layout.spacing.xs,
+    paddingVertical: 6,
     borderRadius: Layout.borderRadius.medium,
-    ...Colors.shadows.small,
   },
   pointsValue: {
     fontSize: Layout.fontSize.sm,
