@@ -190,18 +190,18 @@ export default function DashboardScreen() {
               />
             </TouchableOpacity>
             <View>
+              <View style={styles.pointsContainer}>
+                <Coins color={Colors.accentYellow} size={20} />
+                <View>
+                  <Text style={styles.pointsValue}>{user?.points || 0}</Text>
+                  <Text style={styles.pointsLabel}>{user?.totalPoints || 0} total</Text>
+                </View>
+              </View>
               <Text style={styles.greeting}>Welcome back,</Text>
               <Text style={styles.userName}>{user?.name || 'Learner'}! 🔥</Text>
             </View>
           </View>
           <View style={styles.headerRight}>
-            <View style={styles.pointsContainer}>
-              <Coins color={Colors.accentYellow} size={20} />
-              <View>
-                <Text style={styles.pointsValue}>{user?.points || 0}</Text>
-                <Text style={styles.pointsLabel}>{user?.totalPoints || 0} total</Text>
-              </View>
-            </View>
             <TouchableOpacity style={styles.notificationButton}>
               <Bell color={Colors.text.primary} size={24} />
               {hasNotifications && <View style={styles.notificationDot} />}
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
   },
   headerLeft: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: Layout.spacing.md,
     flex: 1,
   },
