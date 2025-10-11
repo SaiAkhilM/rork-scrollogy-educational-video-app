@@ -31,7 +31,9 @@ export const [UserProvider, useUser] = createContextHook<UserContextType>(() => 
           email: 'john@example.com',
           level: 5,
           points: 1250,
+          totalPoints: 3450,
           streak: 7,
+          isPremium: false,
         };
         setUser(defaultUser);
         await AsyncStorage.setItem('user', JSON.stringify(defaultUser));

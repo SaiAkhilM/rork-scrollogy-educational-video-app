@@ -5,7 +5,9 @@ export interface User {
   avatar?: string;
   level: number;
   points: number;
+  totalPoints: number;
   streak: number;
+  isPremium?: boolean;
 }
 
 export interface Video {
@@ -28,18 +30,59 @@ export interface Video {
   isSaved?: boolean;
 }
 
+export interface Module {
+  id: string;
+  title: string;
+  thumbnailUrl: string;
+  progress: number;
+  isLocked: boolean;
+  videos: Video[];
+  quizzes: Quiz[];
+  order: number;
+}
+
+export interface Quiz {
+  id: string;
+  title: string;
+  moduleId: string;
+  questions: QuizQuestion[];
+  completed: boolean;
+  score?: number;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+}
+
+export interface CourseProgress {
+  courseId: string;
+  progress: number;
+  completedModules: string[];
+  completedVideos: string[];
+  completedQuizzes: string[];
+  lastAccessed: Date;
+  certificateEarned: boolean;
+}
+
 export interface Course {
   id: string;
   title: string;
   description: string;
   thumbnailUrl: string;
-  videos: Video[];
+  modules: Module[];
   progress: number;
   totalVideos: number;
   completedVideos: number;
   category: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   estimatedTime: number;
+  points: number;
+  isEnrolled: boolean;
+  isSaved: boolean;
+  lastAccessed?: Date;
 }
 
 export interface Category {
