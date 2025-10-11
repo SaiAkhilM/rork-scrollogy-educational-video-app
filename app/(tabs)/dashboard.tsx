@@ -375,7 +375,10 @@ export default function DashboardScreen() {
 
         {/* Bottom Actions */}
         <View style={styles.bottomActions}>
-          <TouchableOpacity style={styles.primaryActionButton}>
+          <TouchableOpacity 
+            style={styles.primaryActionButton}
+            onPress={() => router.push('/request-course')}
+          >
             <MessageSquare color={Colors.white} size={20} />
             <Text style={styles.primaryActionText}>Request a Custom Course</Text>
           </TouchableOpacity>

@@ -2,12 +2,15 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  username?: string;
   avatar?: string;
   level: number;
   points: number;
   totalPoints: number;
   streak: number;
+  longestStreak?: number;
   isPremium?: boolean;
+  rank?: number;
 }
 
 export interface Video {
@@ -126,10 +129,56 @@ export interface Category {
 export interface Achievement {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   icon: string;
   unlocked: boolean;
   unlockedAt?: Date;
   progress?: number;
   maxProgress?: number;
+  gradient?: string[];
+}
+
+export interface LeaderboardEntry {
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  rank: number;
+  points: number;
+  totalPoints?: number;
+  streak?: number;
+  level?: number;
+}
+
+export interface Certificate {
+  id: string;
+  courseId: string;
+  courseName: string;
+  userId: string;
+  userName: string;
+  earnedAt: Date;
+  pointsEarned: number;
+  certificateNumber: string;
+}
+
+export interface StreakData {
+  currentStreak: number;
+  longestStreak: number;
+  lastActivityDate: Date;
+  streakMilestone: 'bronze' | 'silver' | 'gold' | null;
+}
+
+export interface CourseRequest {
+  id: string;
+  userId: string;
+  topic: string;
+  depth: 'mini' | 'standard' | 'deep';
+  learningGoals: string;
+  moduleSuggestions?: string;
+  pointsRedeemed: number;
+  estimatedPrice: number;
+  videoCount: number;
+  status: 'pending' | 'quoted' | 'approved' | 'in_progress' | 'completed';
+  expiresAt?: Date;
+  createdAt: Date;
 }
