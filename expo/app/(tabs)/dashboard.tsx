@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Layout.spacing.sm,
+    gap: Layout.spacing.md,
     flex: 1,
   },
   dashboardTitle: {
